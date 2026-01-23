@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bernoulli Calc</title>
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="img/komujina_icon_32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="img/komujina_icon_48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/komujina_icon_64.png">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="page-header">
+    <div class="header-inner">
+      <div class="brand">
+        <a href="/" aria-label="komujina header">
+          <img class="site-logo" src="img/komujina_logo.png" alt="komujina logo">
+        </a>
+        <span class="brand-text">1 − (1 − p)<sup>n</sup> 計算ツール</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section>
+      <p class="caption">
+        本ツールは、成功確率 <em>p</em> のベルヌーイ試行を
+        <em>n</em> 回独立に行ったとき、
+        少なくとも 1 回成功する確率
+        <strong>1 − (1 − p)<sup>n</sup></strong>
+        を計算します。
+      </p>
+
+      <p class="caption">
+        各試行はベルヌーイ分布
+        <strong>f(k; p) = p<sup>k</sup>(1 − p)<sup>1 − k</sup></strong>
+        (k = 0, 1) に従い、
+        すべての試行は互いに独立であると仮定しています。
+      </p>
+    </section>
+
+    <form id="calcForm" novalidate>
+      <fieldset>
+        <legend>試行1回あたりの確率</legend>
+
+        <label>
+          <input type="radio" name="probType" value="decimal" checked>
+          小数
+        </label>
+        <label>
+          <input type="radio" name="probType" value="fraction">
+          分数
+        </label>
+
+        <div id="decimalInput">
+          0.
+          <input type="text" id="decimalValue" inputmode="numeric" placeholder="3">
+        </div>
+
+        <div id="fractionInput" class="hidden">
+          <input type="text" id="numerator" inputmode="numeric" placeholder="1">
+          /
+          <input type="text" id="denominator" inputmode="numeric" placeholder="3">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>試行回数</legend>
+        <input type="text" id="trials" inputmode="numeric" placeholder="5">
+      </fieldset>
+
+      <button type="submit">計算</button>
+    </form>
+
+    <div id="result"></div>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
